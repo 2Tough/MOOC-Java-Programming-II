@@ -39,9 +39,12 @@ public class TicTacToeApplication extends Application {
 
     @Override
     public void start(Stage window) {
-
+        BorderPane layout = new BorderPane();
         Label turnLabel = new Label("Turn: X");
+        layout.setTop(turnLabel);
+
         GridPane board = new GridPane();
+        layout.setCenter(board);
 
         board.setHgap(10); //horizontal gap in pixels
         board.setVgap(10); //vertical gap in pixels
@@ -59,23 +62,21 @@ public class TicTacToeApplication extends Application {
         Button seven = this.button[7];
         Button eight = this.button[8];
 
-        board.add(turnLabel, 0, 0);
-        board.setColumnSpan(turnLabel, 2);
         turnLabel.setFont(new Font("Monospaced", 40));
 
-        board.add(zero, 0, 1);
-        board.add(one, 1, 1);
-        board.add(two, 2, 1);
+        board.add(zero, 0, 0);
+        board.add(one, 1, 0);
+        board.add(two, 2, 0);
 
-        board.add(three, 0, 2);
-        board.add(four, 1, 2);
-        board.add(five, 2, 2);
+        board.add(three, 0, 1);
+        board.add(four, 1, 1);
+        board.add(five, 2, 1);
 
-        board.add(six, 0, 3);
-        board.add(seven, 1, 3);
-        board.add(eight, 2, 3);
+        board.add(six, 0, 2);
+        board.add(seven, 1, 2);
+        board.add(eight, 2, 2);
 
-        Scene scene = new Scene(board);
+        Scene scene = new Scene(layout);
 
         window.setScene(scene);
         window.show();
@@ -97,6 +98,7 @@ public class TicTacToeApplication extends Application {
             if (!zero.getText().equals(" ")) {
                 if (checkWinner()) {
                     turnLabel.setText("The end!");
+
                 }
 
             }
@@ -228,7 +230,7 @@ public class TicTacToeApplication extends Application {
             }
             if (!six.getText().equals(" ")) {
                 if (checkWinner()) {
-                    turnLabel.setText("The end!");
+                    turnLabel.setText("The end 6!");
                 }
             }
 
@@ -289,38 +291,76 @@ public class TicTacToeApplication extends Application {
 
     public boolean checkWinner() {
         // Horizontal wins
-        if (!this.button[0].getText().equals(" ") && this.button[0].getText().equals(this.button[1].getText()) && this.button[1].getText().equals(this.button[2].getText())) {
-            return true;
+        if (!this.button[0].getText().equals(" ")) {
+            if (this.button[0].getText().equals(this.button[1].getText())
+                    && this.button[0].getText().equals(this.button[2].getText())) {
+
+                return true;
+            }
+
         }
 
-        if (!this.button[3].getText().equals(" ") && this.button[3].getText().equals(this.button[4].getText()) && this.button[4].getText().equals(this.button[5].getText())) {
-            return true;
+        if (!this.button[3].getText().equals(" ")) {
+            if (this.button[3].getText().equals(this.button[4].getText())
+                    && this.button[3].getText().equals(this.button[5].getText())) {
+
+                return true;
+            }
+
         }
 
-        if (!this.button[6].getText().equals(" ") && this.button[6].getText().equals(this.button[7].getText()) && this.button[7].getText().equals(this.button[8].getText())) {
-            return true;
+        if (!this.button[6].getText().equals(" ")) {
+            if (this.button[6].getText().equals(this.button[7].getText())
+                    && this.button[6].getText().equals(this.button[8].getText())) {
+
+                return true;
+            }
+
         }
 
         // Vertical wins
-        if (!this.button[0].getText().equals(" ") && this.button[0].getText().equals(this.button[3].getText()) && this.button[3].getText().equals(this.button[6].getText())) {
-            return true;
+        if (!this.button[0].getText().equals(" ")) {
+            if (this.button[0].getText().equals(this.button[3].getText())
+                    && this.button[0].getText().equals(this.button[6].getText())) {
+
+                return true;
+            }
         }
 
-        if (!this.button[1].getText().equals(" ") && this.button[1].getText().equals(this.button[4].getText()) && this.button[4].getText().equals(this.button[7].getText())) {
-            return true;
+        if (!this.button[1].getText().equals(" ")) {
+            if (this.button[1].getText().equals(this.button[4].getText())
+                    && this.button[1].getText().equals(this.button[7].getText())) {
+
+                return true;
+            }
+
         }
 
-        if (!this.button[2].getText().equals(" ") && this.button[2].getText().equals(this.button[5].getText()) && this.button[5].getText().equals(this.button[8].getText())) {
-            return true;
+        if (!this.button[2].getText().equals(" ")) {
+            if (this.button[2].getText().equals(this.button[5].getText())
+                    && this.button[2].getText().equals(this.button[8].getText())) {
+
+                return true;
+            }
         }
 
         // Diagonal wins
-        if (!this.button[0].getText().equals(" ") && this.button[0].getText().equals(this.button[4].getText()) && this.button[4].getText().equals(this.button[8].getText())) {
-            return true;
+        if (!this.button[0].getText().equals(" ")) {
+            if (this.button[0].getText().equals(this.button[4].getText())
+                    && this.button[0].getText().equals(this.button[8].getText())) {
+
+                return true;
+            }
+
         }
 
-        if (!this.button[2].getText().equals(" ") && this.button[2].getText().equals(this.button[4].getText()) && this.button[4].getText().equals(this.button[6].getText())) {
-            return true;
+        if (!this.button[2].getText().equals(" ")) {
+            if (this.button[2].getText().equals(this.button[4].getText())
+                    && this.button[2].getText().equals(this.button[6].getText())) {
+
+                return true;
+            }
+
         }
 
         return false;
